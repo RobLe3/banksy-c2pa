@@ -1,0 +1,59 @@
+[package]
+name = "banksy-c2pa"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+description = "Local C2PA editorial provenance signer for PNG and JPEG images"
+license = "MIT"
+repository = "https://github.com/RobLe3/banksy-c2pa"
+keywords = ["c2pa", "content-credentials", "provenance", "image", "cli"]
+categories = ["command-line-utilities", "cryptography", "multimedia::images"]
+include = [
+    "/Cargo.toml",
+    "/Cargo.lock",
+    "/LICENSE",
+    "/README.md",
+    "/SECURITY.md",
+    "/TRUST_MODEL.md",
+    "/CHANGELOG.md",
+    "/src/**",
+    "/tests/**",
+    "/examples/**",
+    "/docs/**",
+    "/scripts/**",
+]
+
+[dependencies]
+anyhow = "1"
+c2pa = { version = "0.90.20", default-features = false, features = ["file_io", "rust_native_crypto"] }
+clap = { version = "4", features = ["derive", "env"] }
+crc32fast = "1"
+directories = "6"
+dialoguer = { version = "0.12", default-features = false }
+hex = "0.4"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+rcgen = { version = "0.14.10", default-features = false, features = ["pem", "crypto", "ring", "x509-parser", "zeroize"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+tempfile = "3"
+time = { version = "0.3", features = ["formatting", "macros"] }
+toml = "0.9"
+x509-parser = "0.18"
+zeroize = { version = "1", features = ["zeroize_derive"] }
+zip = { version = "8.6", default-features = false }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+block2 = "0.6.2"
+objc2 = "0.6.4"
+objc2-foundation = { version = "0.3.2", default-features = false, features = ["NSError", "NSString"] }
+objc2-local-authentication = { version = "0.3.2", default-features = false, features = ["LAContext", "block2"] }
+security-framework = { version = "3.7.0", features = ["OSX_10_15"] }
+
+[dev-dependencies]
+assert_cmd = "2"
+predicates = "3"
+
+[profile.release]
+lto = "thin"
+strip = "symbols"

@@ -1,0 +1,30 @@
+signers = []
+
+[identity]
+signer_name = "Example Studio image signer"
+organization = "Example Studio"
+domain = "example.test"
+uri = "https://example.test/provenance"
+vendor = "example.test"
+
+[credential]
+mode = "local-private"
+algorithm = "es256"
+keychain_backend = "login-keychain-local-authentication"
+keychain_service = "com.roblemumin.banksy-c2pa"
+root_key_account = "root-ca-v1"
+root_certificate = "certs/root-ca.pem"
+
+[manifest]
+attest_description = "Editorial / publication attestation"
+default_description = "Derivative / editorial work"
+# Reserved for compatibility. Publication remains explicit on the CLI.
+publisher_action = false
+
+[timestamp]
+enabled = false
+tsa_url = ""
+
+[security]
+require_user_presence = true
+allow_source_overwrite = false

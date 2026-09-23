@@ -1,0 +1,51 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Install Rust 1.88
+        run: rustup toolchain install 1.88.0 --profile minimal --component rustfmt,clippy
+      - name: Select Rust 1.88
+        run: rustup default 1.88.0
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+      - name: Run Clippy
+        run: cargo clippy --all-targets --all-features -- -D warnings
+      - name: Run tests
+        run: cargo test --all-targets
+
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Install Rust 1.88
+        run: rustup toolchain install 1.88.0 --profile minimal
+      - name: Select Rust 1.88
+        run: rustup default 1.88.0
+      - name: Build and verify the source package
+        run: cargo package --locked --allow-dirty
+      - name: Inspect packaged files
+        shell: bash
+        run: |
+          set -euo pipefail
+          cargo package --allow-dirty --list | tee package-files.txt
+          if grep -E '(^|/)(concept|work)/|\.(png|jpe?g|webp|pem|key|p12|pfx|db|zip)$|(^|/)banksy-c2pa$' package-files.txt; then
+            echo "The source package contains a forbidden private or generated artifact." >&2
+            exit 1
+          fi

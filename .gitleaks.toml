@@ -1,0 +1,10 @@
+title = "banksy-c2pa gitleaks configuration"
+minVersion = "v8.25.0"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Fixed non-secret macOS Keychain service identifier"
+regexTarget = "line"
+regexes = ['''^\s*keychain_service\s*[:=]\s*"com\.roblemumin\.banksy-c2pa"(?:\.into\(\))?,?\s*$''']
