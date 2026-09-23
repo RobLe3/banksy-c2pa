@@ -38,7 +38,7 @@ serde_json = "1"
 sha2 = "0.10"
 tempfile = "3"
 time = { version = "0.3", features = ["formatting", "macros"] }
-toml = "0.9"
+toml = "1.1"
 x509-parser = "0.18"
 zeroize = { version = "1", features = ["zeroize_derive"] }
 zip = { version = "8.6", default-features = false }
