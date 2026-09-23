@@ -6,5 +6,7 @@ useDefault = true
 
 [[allowlists]]
 description = "Fixed non-secret macOS Keychain service identifier"
+condition = "AND"
 regexTarget = "line"
 regexes = ['''^\s*keychain_service\s*[:=]\s*"com\.roblemumin\.banksy-c2pa"(?:\.into\(\))?,?\s*$''']
+paths = ['''^(?:src/config\.rs|examples/profile\.toml)$''']
