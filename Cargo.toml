@@ -35,7 +35,7 @@ image = { version = "0.25", default-features = false, features = ["png", "jpeg"]
 rcgen = { version = "0.14.10", default-features = false, features = ["pem", "crypto", "ring", "x509-parser", "zeroize"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-sha2 = "0.10"
+sha2 = "0.11"
 tempfile = "3"
 time = { version = "0.3", features = ["formatting", "macros"] }
 toml = "1.1"
