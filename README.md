@@ -1,5 +1,11 @@
 # banksy-c2pa
 
+<p align="center">
+  <img src="title.png" width="700" alt="banksy-c2pa provenance demonstration showing upstream OpenAI provenance and a local fictional issuer">
+</p>
+
+> Demonstration only: the issuer shown in this image is fictional, and a local certificate does not establish public C2PA trust.
+
 `banksy-c2pa` is a local macOS CLI for preserving and extending C2PA image provenance. It can add a narrowly scoped editorial or publication claim to an existing PNG or JPEG, retain an upstream Content Credential when one is present, and link a genuine edited result to its parent.
 
 It does **not** detect whether an arbitrary image was made with AI. It does not make a local certificate publicly trusted, prove authorship or copyright, recover metadata that was already removed, or establish that an image is authentic in every sense.

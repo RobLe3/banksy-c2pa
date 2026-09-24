@@ -2,6 +2,7 @@
 /banksy-c2pa
 /work/
 /*.png
+!/title.png
 /*.jpg
 /*.jpeg
 /*.webp
