@@ -26,6 +26,10 @@ The generated certificate hierarchy is local and private by default. A valid res
 - Rust 1.88 or newer
 - Touch ID configured in macOS if biometric authentication is desired
 
+## Platform support
+
+The current release is designed and tested for macOS. Private signing keys are stored in the macOS login Keychain, and macOS LocalAuthentication provides Touch ID or password-based user presence. Windows support is not currently included. If you need Windows support, fork this repository and adapt the key-storage and authentication backend for Windows while preserving the security boundaries documented in [SECURITY.md](SECURITY.md).
+
 The current release is source-first. No unsigned prebuilt executable is published.
 
 ## Install
