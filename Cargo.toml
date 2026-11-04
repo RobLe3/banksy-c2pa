@@ -41,7 +41,7 @@ time = { version = "0.3", features = ["formatting", "macros"] }
 toml = "1.1"
 x509-parser = "0.18"
 zeroize = { version = "1", features = ["zeroize_derive"] }
-zip = { version = "8.6", default-features = false }
+zip = { version = "9.0", default-features = false }
 
 [target.'cfg(target_os = "macos")'.dependencies]
 block2 = "0.6.2"
